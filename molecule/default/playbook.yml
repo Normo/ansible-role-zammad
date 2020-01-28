@@ -2,4 +2,5 @@
 - name: Converge
   hosts: all
   roles:
+    - role: geerlingguy.repo-epel
     - role: ansible-role-zammad

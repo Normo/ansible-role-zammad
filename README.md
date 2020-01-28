@@ -50,7 +50,7 @@ zammad_ssl_dir: '/etc/ssl/zammad'
 Dependencies
 ------------
 
-None.
+- [geerlingguy.repo-epel](https://galaxy.ansible.com/geerlingguy/repo-epel)
 
 Example Playbook
 ----------------
