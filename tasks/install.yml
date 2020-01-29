@@ -1,14 +1,15 @@
 ---
+- name: install elasticsearch and dependencies
+  package:
+    name:
+      - java-1.8.0-openjdk.x86_64
+      - elasticsearch
+    state: present
 
 - name: install zammad
   yum: pkg={{ item }}
   with_items:
     - zammad
-
-- name: install java openjdk for elasticsearch
-  yum: pkg={{ item }}
-  with_items:
-    - java-1.8.0-openjdk.x86_64
 
 - name: add nginx user to nginx group
   user:
