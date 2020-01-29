@@ -7,9 +7,9 @@
     state: present
 
 - name: install zammad
-  yum: pkg={{ item }}
-  with_items:
-    - zammad
+  package:
+    name: zammad
+    state: present
 
 - name: add nginx user to nginx group
   user:
