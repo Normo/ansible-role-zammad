@@ -15,6 +15,12 @@
   tags:
     - elasticsearch
 
+- name: increase the virtual memory map limit
+  sysctl:
+    name: vm.max_map_count
+    value: 262144
+    state: present
+
 - name: start elasticsearch
   service:
     name: elasticsearch
