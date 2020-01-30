@@ -27,4 +27,13 @@
    group: elasticsearch
   notify: restart elasticsearch
 
+- name: config elasticsearch for zammad
+  command: zammad run rails r "Setting.set('es_url', 'http://127.0.0.1:9200')"
+  tags:
+    - elasticsearch
+
+- name: rebuild searchindex
+  command: 'zammad run rake searchindex:rebuild'
+  tags:
+    - elasticsearch
 ...
