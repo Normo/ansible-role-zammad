@@ -1,10 +1,4 @@
 ---
-- name: install elasticsearch and dependencies
-  package:
-    name:
-      - java-1.8.0-openjdk.x86_64
-      - elasticsearch
-    state: present
 
 - name: install zammad
   package:

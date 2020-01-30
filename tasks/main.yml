@@ -7,11 +7,14 @@
     - zammad
     - yumrepos
 
+- name: set up elasticsearch
+  import_tasks: elasticsearch.yml
+  tags:
+    - elasticsearch
+
 - name: installation steps
   import_tasks: install.yml
   tags:
-    - elasticsearch
-    - java
     - yum
     - zammad
 
@@ -32,11 +35,6 @@
   copy:
     src: "{{ zammad_ssl_cert_key_local_path }}/{{ zammad_ssl_cert_key }}"
     dest: "{{ zammad_ssl_dir }}"
-
-- name: elasticsearch for zammad details
-  import_tasks: elasticsearch.yml
-  tags:
-    - elasticsearch
 
 - name: include config changes
   include_tasks: config.yml

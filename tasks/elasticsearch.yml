@@ -1,17 +1,31 @@
 ---
 
-- name: ensuring elasticsearch is started
-  service:
-    name: elasticsearch
-    state: started
-  tags:
-    - elasticsearch
+- name: install elasticsearch and dependencies
+  package:
+    name:
+      - java-1.8.0-openjdk
+      - elasticsearch
+    state: present
 
 - name: install ingest-attachment plugin for elasticsearch
   elasticsearch_plugin:
     name: ingest-attachment
     state: present
   notify: restart elasticsearch
+  tags:
+    - elasticsearch
+
+- name: start elasticsearch
+  service:
+    name: elasticsearch
+    state: started
+  tags:
+    - elasticsearch
+
+- name: enable elasticsearch
+  service:
+    name: elasticsearch
+    enabled: yes
   tags:
     - elasticsearch
 
