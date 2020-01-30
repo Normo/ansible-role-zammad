@@ -8,4 +8,9 @@ zammad_ssl_cert_local_path: '/tmp'
 zammad_ssl_cert_key: 'my_zammad_key.pem'
 zammad_ssl_cert: 'my_zammad_cert.pem'
 
+elasticsearch_data_path: "/var/lib/elasticsearch"
+elasticsearch_logs_path: "/var/log/elasticsearch"
+elasticsearch_http_max_content_length: "400mb"
+elasticsearch_indices_query_bool_max_clause_count: "2000"
+
 ...

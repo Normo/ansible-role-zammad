@@ -30,11 +30,11 @@
 #
 # Path to directory where to store the data (separate multiple locations by comma):
 #
-#path.data: /path/to/data
+path.data: {{ elasticsearch_data_path }}
 #
 # Path to log files:
 #
-#path.logs: /path/to/logs
+path.logs: {{ elasticsearch_logs_path }}
 #
 # ----------------------------------- Memory -----------------------------------
 #
@@ -62,16 +62,16 @@
 #
 # --------------------------------- Discovery ----------------------------------
 #
-# Pass an initial list of hosts to perform discovery when new node is started:
+# Pass an initial list of hosts to perform discovery when this node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-#discovery.zen.ping.unicast.hosts: ["host1", "host2"]
+#discovery.seed_hosts: ["host1", "host2"]
 #
-# Prevent the "split brain" by configuring the majority of nodes (total number of master-eligible nodes / 2 + 1):
+# Bootstrap the cluster using an initial set of master-eligible nodes:
 #
-#discovery.zen.minimum_master_nodes: 3
+#cluster.initial_master_nodes: ["node-1", "node-2"]
 #
-# For more information, consult the zen discovery module documentation.
+# For more information, consult the discovery and cluster formation module documentation.
 #
 # ---------------------------------- Gateway -----------------------------------
 #
@@ -86,3 +86,23 @@
 # Require explicit names when deleting indices:
 #
 #action.destructive_requires_name: true
+#
+# ---------------------------------- Zammad ------------------------------------
+#
+# Tickets above this size (articles + attachments + metadata)
+# may fail to be properly indexed (Default: 100mb).
+#
+# When Zammad sends tickets to Elasticsearch for indexing,
+# it bundles together all the data on each individual ticket
+# and issues a single HTTP request for it.
+# Payloads exceeding this threshold will be truncated.
+#
+# Performance may suffer if it is set too high.
+http.max_content_length: {{ elasticsearch_http_max_content_length }}
+
+# Allows the engine to generate larger (more complex) search queries.
+# Elasticsearch will raise an error or deprecation notice if this value is too low,
+# but setting it too high can overload system resources (Default: 1024).
+#
+# Available in version 6.6+ only.
+indices.query.bool.max_clause_count: {{ elasticsearch_indices_query_bool_max_clause_count }}
