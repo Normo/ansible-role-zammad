@@ -12,8 +12,10 @@
   tags:
     - elasticsearch
 
-- name: install ingest plugin for elasticsearch 2.6.x
-  command: '/usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-attachment'
+- name: install ingest-attachment plugin for elasticsearch
+  elasticsearch_plugin:
+    name: ingest-attachment
+    state: present
   notify: restart elasticsearch
   tags:
     - elasticsearch
